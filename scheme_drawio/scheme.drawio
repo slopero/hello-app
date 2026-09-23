@@ -1,0 +1,53 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="hello-app" id="hello-app-scheme">
+    <mxGraphModel dx="1400" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cluster" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;fontStyle=1;fontSize=14;arcSize=3;" value="Minikube cluster (node: minikube)" vertex="1">
+          <mxGeometry height="560" width="620" x="260" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;fontStyle=1;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="450" width="310" x="540" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pod1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;arcSize=6;" value="Pod: hello-app-5896dd8f6d-k7d6x&lt;br&gt;label: app=hello-app" vertex="1">
+          <mxGeometry height="140" width="250" x="570" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Container: hello-app&lt;br&gt;image: slopero/hello-app:latest&lt;br&gt;port: 32777" vertex="1">
+          <mxGeometry height="65" width="200" x="595" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="pod2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;arcSize=6;" value="Pod: hello-app-5896dd8f6d-t6wbq&lt;br&gt;label: app=hello-app" vertex="1">
+          <mxGeometry height="140" width="250" x="570" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Container: hello-app&lt;br&gt;image: slopero/hello-app:latest&lt;br&gt;port: 32777" vertex="1">
+          <mxGeometry height="65" width="200" x="595" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Service: hello-service&lt;/b&gt;&lt;br&gt;type: NodePort&lt;br&gt;selector: app=hello-app&lt;br&gt;port: 80 ---&amp;gt; targetPort: 32777&lt;br&gt;nodePort: 30080" vertex="1">
+          <mxGeometry height="100" width="200" x="290" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Браузер&lt;br&gt;(пользователь)" vertex="1">
+          <mxGeometry height="60" width="140" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="hub" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#f8cecc;strokeColor=#b85450;" value="Docker Hub&lt;br&gt;slopero/hello-app:1.0" vertex="1">
+          <mxGeometry height="80" width="160" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="endArrow=classic;html=1;rounded=0;" target="svc" value="localhost:8080&lt;br&gt;(kubectl port-forward)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="svc" style="endArrow=classic;html=1;rounded=0;" target="c1" value="32777">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="svc" style="endArrow=classic;html=1;rounded=0;" target="c2" value="32777">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="hub" style="endArrow=classic;html=1;rounded=0;dashed=1;" target="deploy" value="docker pull образа">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
